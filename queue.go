@@ -1,4 +1,4 @@
-package ds
+package adt
 
 // Element is an element of a queue.
 type Element struct {

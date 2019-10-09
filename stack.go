@@ -1,4 +1,4 @@
-package ds
+package adt
 
 // Frame is an element of a stack.
 type Frame struct {
