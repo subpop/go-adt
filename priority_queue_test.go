@@ -7,11 +7,11 @@ import (
 
 func TestPriorityQueue(t *testing.T) {
 	tests := []struct {
-		input map[string]int
+		input map[string]float64
 		want  []interface{}
 	}{
 		{
-			input: map[string]int{
+			input: map[string]float64{
 				"a": 3,
 				"b": 2,
 				"c": 5,
@@ -19,7 +19,7 @@ func TestPriorityQueue(t *testing.T) {
 			want: []interface{}{"c", "a", "b"},
 		},
 		{
-			input: map[string]int{},
+			input: map[string]float64{},
 			want:  []interface{}{},
 		},
 	}

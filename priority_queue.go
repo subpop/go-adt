@@ -20,7 +20,7 @@ func NewPriorityQueue(n int) *PriorityQueue {
 }
 
 // Push inserts a new element e with value v and priority p to the queue.
-func (pq *PriorityQueue) Push(v interface{}, p int) {
+func (pq *PriorityQueue) Push(v interface{}, p float64) {
 	e := &element{
 		value:    v,
 		priority: p,
@@ -44,7 +44,7 @@ func (pq PriorityQueue) Len() int {
 
 type element struct {
 	value    interface{}
-	priority int
+	priority float64
 	index    int
 }
 
