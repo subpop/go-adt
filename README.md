@@ -6,7 +6,7 @@ Package adt implements various abstract data types.
 
 ## Queue
 
-`Queue` implements a FIFO queue using a doubley-linked list.
+`Queue` implements a FIFO queue using a doubly-linked list.
 
 ## DisjointSet
 
