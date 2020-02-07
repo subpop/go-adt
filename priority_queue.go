@@ -4,7 +4,9 @@ import "container/heap"
 
 // PriorityQueue represents an ordered collection of elements that can be
 // accessed in a priority-first manner. Elements with a higher priority are
-// retrieved before elements with a lower priority.
+// retrieved before elements with a lower priority. Priority is represented in
+// a lower-value order; the closer a priority is to zero, the higher priority
+// it receives.
 type PriorityQueue struct {
 	elements *pqueue
 }
@@ -55,7 +57,7 @@ func (pq pqueue) Len() int {
 }
 
 func (pq pqueue) Less(i, j int) bool {
-	return pq[i].priority > pq[j].priority
+	return pq[i].priority < pq[j].priority
 }
 
 func (pq pqueue) Swap(i, j int) {

@@ -15,8 +15,9 @@ func TestPriorityQueue(t *testing.T) {
 				"a": 3,
 				"b": 2,
 				"c": 5,
+				"d": 0,
 			},
-			want: []interface{}{"c", "a", "b"},
+			want: []interface{}{"d", "b", "a", "c"},
 		},
 		{
 			input: map[string]int{},
