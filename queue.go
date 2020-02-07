@@ -6,7 +6,7 @@ type Element struct {
 	Value      interface{}
 }
 
-// Queue represents an ordered collection of elements that can be access in a
+// Queue represents an ordered collection of elements that can be accessed in a
 // first-in, first-out manner. The zero value for Queue is an empty queue ready
 // to use.
 type Queue struct {
