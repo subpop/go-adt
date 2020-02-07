@@ -11,3 +11,7 @@ Package adt implements various abstract data types.
 ## DisjointSet
 
 `DisjointSet` implements a merge-set or union-find data structure.
+
+## PriorityQueue
+
+`PriorityQueue` implements a priority queue using a heap.
