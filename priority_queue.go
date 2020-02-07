@@ -9,6 +9,7 @@ import "container/heap"
 // it receives.
 type PriorityQueue struct {
 	elements *pqueue
+	indexes  map[interface{}]int
 }
 
 // NewPriorityQueue returns a priority queue of size n.
@@ -16,6 +17,7 @@ func NewPriorityQueue(n int) *PriorityQueue {
 	elements := make(pqueue, n)
 	pq := &PriorityQueue{
 		elements: &elements,
+		indexes:  make(map[interface{}]int),
 	}
 	heap.Init(pq.elements)
 	return pq
@@ -27,6 +29,7 @@ func (pq *PriorityQueue) Push(v interface{}, p float64) {
 		value:    v,
 		priority: p,
 	}
+	pq.indexes[v] = len(*pq.elements)
 	heap.Push(pq.elements, e)
 }
 
@@ -36,7 +39,17 @@ func (pq *PriorityQueue) Pop() interface{} {
 		return nil
 	}
 	elem := heap.Pop(pq.elements).(*element)
+	delete(pq.indexes, elem.value)
 	return elem.value
+}
+
+// Prioritize adjusts the priority of element v to priority p and adjusts the
+// queue order.
+func (pq *PriorityQueue) Prioritize(v interface{}, p float64) {
+	i := pq.indexes[v]
+	e := pq.elements.Elem(i)
+	e.priority = p
+	heap.Fix(pq.elements, i)
 }
 
 // Len returns the number of elements in the queue.
@@ -75,4 +88,8 @@ func (pq *pqueue) Pop() interface{} {
 	old[n-1] = nil // avoid memory leak
 	*pq = old[0 : n-1]
 	return elem
+}
+
+func (pq pqueue) Elem(i int) *element {
+	return pq[i]
 }
