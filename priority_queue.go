@@ -47,7 +47,6 @@ func (pq PriorityQueue) Len() int {
 type element struct {
 	value    interface{}
 	priority float64
-	index    int
 }
 
 type pqueue []*element
@@ -62,14 +61,10 @@ func (pq pqueue) Less(i, j int) bool {
 
 func (pq pqueue) Swap(i, j int) {
 	pq[i], pq[j] = pq[j], pq[i]
-	pq[i].index = i
-	pq[j].index = j
 }
 
 func (pq *pqueue) Push(x interface{}) {
-	n := len(*pq)
 	elem := x.(*element)
-	elem.index = n
 	*pq = append(*pq, elem)
 }
 
@@ -77,8 +72,7 @@ func (pq *pqueue) Pop() interface{} {
 	old := *pq
 	n := len(old)
 	elem := old[n-1]
-	old[n-1] = nil  // avoid memory leak
-	elem.index = -1 // for safety
+	old[n-1] = nil // avoid memory leak
 	*pq = old[0 : n-1]
 	return elem
 }
