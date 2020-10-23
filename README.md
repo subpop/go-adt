@@ -1,5 +1,5 @@
-[![GoDoc](https://godoc.org/github.com/subpop/go-adt?status.svg)](https://godoc.org/github.com/subpop/go-adt)
-[![Build Status](https://travis-ci.org/subpop/go-adt.svg?branch=master)](https://travis-ci.org/subpop/go-adt)
+[![PkgGoDev](https://pkg.go.dev/badge/git.sr.ht/~spc/go-adt)](https://pkg.go.dev/git.sr.ht/~spc/go-adt)
+[![builds.sr.ht status](https://builds.sr.ht/~spc/go-adt.svg)](https://builds.sr.ht/~spc/go-adt?)
 [![Go Report Card](https://goreportcard.com/badge/github.com/subpop/go-adt)](https://goreportcard.com/report/github.com/subpop/go-adt)
 
 Package adt implements various abstract data types.
