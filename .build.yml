@@ -1,9 +1,0 @@
-image: archlinux
-packages:
-  - go
-sources:
-  - https://git.sr.ht/~spc/go-adt
-tasks:
-  - test: |
-      cd go-adt
-      go test -race -v ./
