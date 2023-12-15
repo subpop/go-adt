@@ -1,3 +1,3 @@
-module git.sr.ht/~spc/go-adt
+module github.com/subpop/go-adt
 
 go 1.12
