@@ -7,25 +7,25 @@ import "container/heap"
 // retrieved before elements with a lower priority. Priority is represented in
 // a lower-value order; the closer a priority is to zero, the higher priority
 // it receives.
-type PriorityQueue struct {
-	elements *pqueue
-	indexes  map[interface{}]int
+type PriorityQueue[V comparable] struct {
+	elements *pqueue[V]
+	indexes  map[V]int
 }
 
 // NewPriorityQueue returns a priority queue of size n.
-func NewPriorityQueue(n int) *PriorityQueue {
-	elements := make(pqueue, n)
-	pq := &PriorityQueue{
+func NewPriorityQueue[V comparable](n int) *PriorityQueue[V] {
+	elements := make(pqueue[V], n)
+	pq := &PriorityQueue[V]{
 		elements: &elements,
-		indexes:  make(map[interface{}]int),
+		indexes:  make(map[V]int),
 	}
 	heap.Init(pq.elements)
 	return pq
 }
 
 // Push inserts a new element e with value v and priority p to the queue.
-func (pq *PriorityQueue) Push(v interface{}, p float64) {
-	e := &element{
+func (pq *PriorityQueue[V]) Push(v V, p float64) {
+	e := &element[V]{
 		value:    v,
 		priority: p,
 	}
@@ -34,18 +34,18 @@ func (pq *PriorityQueue) Push(v interface{}, p float64) {
 }
 
 // Pop removes the element with the highest priority and returns its value.
-func (pq *PriorityQueue) Pop() interface{} {
+func (pq *PriorityQueue[V]) Pop() *V {
 	if len(*pq.elements) == 0 {
 		return nil
 	}
-	elem := heap.Pop(pq.elements).(*element)
+	elem := heap.Pop(pq.elements).(*element[V])
 	delete(pq.indexes, elem.value)
-	return elem.value
+	return &elem.value
 }
 
 // Prioritize adjusts the priority of element v to priority p and adjusts the
 // queue order.
-func (pq *PriorityQueue) Prioritize(v interface{}, p float64) {
+func (pq *PriorityQueue[V]) Prioritize(v V, p float64) {
 	i := pq.indexes[v]
 	e := pq.elements.Elem(i)
 	e.priority = p
@@ -53,35 +53,35 @@ func (pq *PriorityQueue) Prioritize(v interface{}, p float64) {
 }
 
 // Len returns the number of elements in the queue.
-func (pq PriorityQueue) Len() int {
+func (pq PriorityQueue[V]) Len() int {
 	return len(*pq.elements)
 }
 
-type element struct {
-	value    interface{}
+type element[V any] struct {
+	value    V
 	priority float64
 }
 
-type pqueue []*element
+type pqueue[V any] []*element[V]
 
-func (pq pqueue) Len() int {
+func (pq pqueue[V]) Len() int {
 	return len(pq)
 }
 
-func (pq pqueue) Less(i, j int) bool {
+func (pq pqueue[V]) Less(i, j int) bool {
 	return pq[i].priority < pq[j].priority
 }
 
-func (pq pqueue) Swap(i, j int) {
+func (pq pqueue[V]) Swap(i, j int) {
 	pq[i], pq[j] = pq[j], pq[i]
 }
 
-func (pq *pqueue) Push(x interface{}) {
-	elem := x.(*element)
+func (pq *pqueue[V]) Push(x interface{}) {
+	elem := x.(*element[V])
 	*pq = append(*pq, elem)
 }
 
-func (pq *pqueue) Pop() interface{} {
+func (pq *pqueue[V]) Pop() interface{} {
 	old := *pq
 	n := len(old)
 	elem := old[n-1]
@@ -90,6 +90,6 @@ func (pq *pqueue) Pop() interface{} {
 	return elem
 }
 
-func (pq pqueue) Elem(i int) *element {
+func (pq pqueue[V]) Elem(i int) *element[V] {
 	return pq[i]
 }
