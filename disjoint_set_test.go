@@ -8,15 +8,15 @@ import (
 
 func TestDisjointSet(t *testing.T) {
 	tests := []struct {
-		input []*DisjointSet
-		want  *DisjointSet
+		input []*DisjointSet[string]
+		want  *DisjointSet[string]
 	}{
 		{
-			input: []*DisjointSet{
+			input: []*DisjointSet[string]{
 				NewDisjointSet("a"),
 				NewDisjointSet("b"),
 			},
-			want: func() *DisjointSet {
+			want: func() *DisjointSet[string] {
 				c := NewDisjointSet("c")
 				c.size = 3
 				return c
@@ -30,7 +30,7 @@ func TestDisjointSet(t *testing.T) {
 			got = Union(got, s)
 		}
 
-		if !cmp.Equal(got, test.want, cmp.AllowUnexported(DisjointSet{})) {
+		if !cmp.Equal(got, test.want, cmp.AllowUnexported(DisjointSet[string]{})) {
 			t.Errorf("%+v != %+v", got, test.want)
 		}
 	}
