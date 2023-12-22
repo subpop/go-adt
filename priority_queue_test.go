@@ -56,7 +56,7 @@ func TestPriorityQueueString(t *testing.T) {
 		for _, want := range test.want {
 			got := q.Pop()
 			if !cmp.Equal(*got, want, cmpopts.SortSlices(func(a, b int) bool { return a < b })) {
-				t.Errorf("%v != %v", got, want)
+				t.Errorf("%v != %v", *got, want)
 			}
 		}
 	}
@@ -111,7 +111,7 @@ func TestPriorityQueueInt(t *testing.T) {
 		for _, want := range test.want {
 			got := q.Pop()
 			if !cmp.Equal(*got, want, cmpopts.SortSlices(func(a, b int) bool { return a < b })) {
-				t.Errorf("%v != %v", got, want)
+				t.Errorf("%v != %v", *got, want)
 			}
 		}
 	}
