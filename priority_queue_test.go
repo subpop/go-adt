@@ -4,7 +4,6 @@ import (
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
-	"github.com/google/go-cmp/cmp/cmpopts"
 )
 
 func TestPriorityQueueString(t *testing.T) {
@@ -55,7 +54,7 @@ func TestPriorityQueueString(t *testing.T) {
 
 		for _, want := range test.want {
 			got := q.Pop()
-			if !cmp.Equal(*got, want, cmpopts.SortSlices(func(a, b int) bool { return a < b })) {
+			if !cmp.Equal(*got, want) {
 				t.Errorf("%v != %v", *got, want)
 			}
 		}
@@ -110,7 +109,7 @@ func TestPriorityQueueInt(t *testing.T) {
 
 		for _, want := range test.want {
 			got := q.Pop()
-			if !cmp.Equal(*got, want, cmpopts.SortSlices(func(a, b int) bool { return a < b })) {
+			if !cmp.Equal(*got, want) {
 				t.Errorf("%v != %v", *got, want)
 			}
 		}
