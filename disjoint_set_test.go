@@ -1,8 +1,9 @@
 package adt
 
 import (
-	"reflect"
 	"testing"
+
+	"github.com/google/go-cmp/cmp"
 )
 
 func TestDisjointSet(t *testing.T) {
@@ -29,7 +30,7 @@ func TestDisjointSet(t *testing.T) {
 			got = Union(got, s)
 		}
 
-		if !reflect.DeepEqual(got, test.want) {
+		if !cmp.Equal(got, test.want, cmp.AllowUnexported(DisjointSet{})) {
 			t.Errorf("%+v != %+v", got, test.want)
 		}
 	}

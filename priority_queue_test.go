@@ -1,8 +1,10 @@
 package adt
 
 import (
-	"reflect"
 	"testing"
+
+	"github.com/google/go-cmp/cmp"
+	"github.com/google/go-cmp/cmp/cmpopts"
 )
 
 func TestPriorityQueue(t *testing.T) {
@@ -53,7 +55,7 @@ func TestPriorityQueue(t *testing.T) {
 
 		for _, want := range test.want {
 			got := q.Pop()
-			if !reflect.DeepEqual(got, want) {
+			if !cmp.Equal(got, want, cmpopts.SortSlices(func(a, b int) bool { return a < b })) {
 				t.Errorf("%v != %v", got, want)
 			}
 		}
