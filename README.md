@@ -18,3 +18,7 @@ Package adt implements various abstract data types.
 ## PriorityQueue
 
 `PriorityQueue` implements a priority queue using a heap.
+
+## OrderedMap
+
+`OrderedMap` implements a key-value pair backed by a slice to maintain order.
