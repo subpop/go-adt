@@ -1,4 +1,4 @@
-[![PkgGoDev](https://pkg.go.dev/badge/git.sr.ht/~spc/go-adt)](https://pkg.go.dev/git.sr.ht/~spc/go-adt)
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/subpop/go-adt)](https://pkg.go.dev/github.com/subpop/go-adt)
 [![Go Report Card](https://goreportcard.com/badge/github.com/subpop/go-adt)](https://goreportcard.com/report/github.com/subpop/go-adt)
 
 Package adt implements various abstract data types.
